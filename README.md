@@ -1,60 +1,113 @@
-# Supply Chain Optimization & Inventory Analysis for Salamate Gostar Pharma
 
-## Project Overview
+#  Supply Chain Optimization: Simulated Pharmaceutical Network
 
-This project aims to optimize the supply chain operations and inventory management for a large pharmaceutical distribution company, "Salamate Gostar Pharma." The company faces challenges such as high inventory holding costs, stockouts, expired goods, and inefficient delivery times. This data-driven initiative seeks to address these issues by leveraging advanced analytics and simulation.
+## Project Objective
+This project simulates a pharmaceutical supply chain network and performs data-driven analysis to uncover inefficiencies, identify performance bottlenecks, and provide actionable insights. Through detailed EDA and visualization, we aim to support better decision-making for procurement, inventory, and distribution strategies.
 
-## Current Phase: Comprehensive Synthetic Data Generation
+---
 
-In the current phase, we have developed a robust framework for generating a comprehensive and realistic synthetic dataset that mirrors the complexities of a real-world pharmaceutical supply chain. This dataset is crucial for subsequent analysis, modeling, and optimization efforts.
+##  Data Source
+A synthetic dataset was created to mimic a realistic supply chain environment with 10 warehouses, multiple suppliers, and thousands of pharmaceutical products. The dataset includes:
+- **Product Details**
+- **Sales Transactions**
+- **Inventory Levels**
+- **Suppliers and Delivery Data**
 
-### Generated Data Schemas:
+---
 
-The following dataframes are generated, representing various aspects of the supply chain:
+##  Tools Used
+- **Python** for simulation, data analysis, and visualization
+- **Pandas & NumPy** for data manipulation
+- **Matplotlib & Seaborn** for visualizations
+- **Google Colab** as the development environment
 
-* **`products_df`**: Master data for all pharmaceutical products, including `product_id`, `product_name`, `product_category`, `unit_price`, `avg_shelf_life_days`, and `storage_conditions`.
-* **`warehouses_df`**: Master data for the company's 10 distribution warehouses, including `warehouse_id`, `warehouse_name`, `warehouse_city`, `latitude`, `longitude`, and `capacity_units`.
-* **`suppliers_df`**: Master data for product suppliers, including `supplier_id`, `supplier_name`, `supplier_location`, `avg_lead_time_days`, and `reliability_score`.
-* **`customers_df`**: Master data for customer pharmacies, including `customer_id`, `customer_name`, and `customer_location`.
-* **`purchase_orders_df`**: Transactional data for product purchases from suppliers, including `po_id`, `po_date`, `supplier_id`, `product_id`, `ordered_quantity`, `unit_cost`, `expected_delivery_date`, `actual_delivery_date`, and `delivery_status`.
-* **`sales_df`**: Transactional data for product sales to customers, including `sales_id`, `sales_date`, `customer_id`, `warehouse_id`, `product_id`, `sold_quantity`, `sales_price`, and `delivery_time_hours`.
-* **`returns_df`**: Data for returned products, including `return_id`, `sales_id`, `return_date`, `product_id`, `warehouse_id`, `returned_quantity`, and `return_reason`.
-* **`inventory_df`**: Simulated inventory snapshots over time for each product, warehouse, and batch, including `snapshot_date`, `warehouse_id`, `product_id`, `batch_number`, `quantity_on_hand`, and `expiry_date`.
-* **`waste_df`**: Records of wasted inventory (primarily due to expiry), including `waste_date`, `warehouse_id`, `product_id`, `batch_number`, `wasted_quantity`, and `reason`.
-* **`stockout_df`**: Records of stockout events (when demand exceeds available inventory), including `stockout_date`, `warehouse_id`, `product_id`, and `stockout_quantity`.
+---
 
-## How to Run
+##  Exploratory Data Analysis (EDA)
 
-This project is developed in a Google Colab environment.
+### 1. Monthly Sales Trend
+![Monthly Sales](Plots/download%20(51).png)
 
-1.  Open the `01_data_generation.ipynb` notebook (or copy the provided code into a new Colab notebook).
-2.  Run all cells sequentially.
-3.  Ensure the `Faker` library is installed by running `!pip install Faker` in the first cell.
+This line chart visualizes monthly sales across the simulation. Sales peak during winter months and drop in summer—common in real-world pharmaceutical trends.
 
-The generated DataFrames will be saved as `.csv` and `.parquet` files in your Colab environment.
+---
 
-## Technologies Used
+### 2. Sales by Product Category
+![Sales by Category](Plots/download%20(50).png)
 
-* **Python**
-* **Pandas**
-* **NumPy**
-* **Faker** (for synthetic data generation)
-* **datetime**
+A bar chart displaying total sales across top product categories. Vitamins, antibiotics, and chronic condition medications lead in revenue.
 
-## Next Steps
+---
 
-The next phases of this project will involve:
+### 3. Supplier Performance
+![Supplier Performance](Plots/download%20(49).png)
 
-* **Exploratory Data Analysis (EDA):** Deep dive into the generated data to uncover patterns, trends, and identify bottlenecks and inefficiencies.
-* **Feature Engineering:** Creating new, meaningful features from the raw data for advanced modeling.
-* **Demand Forecasting:** Building predictive models to forecast future product demand.
-* **Inventory Optimization:** Developing strategies and models to determine optimal inventory levels across warehouses.
-* **Cost Analysis & Business Impact:** Quantifying the potential savings and operational improvements resulting from the optimizations.
+A scatter plot showing average lead time vs. delivery delay rate per supplier. Bubble size indicates number of orders. Top-left suppliers are ideal: fast and reliable.
 
-## Contribution
+---
 
-Feel free to explore the code, suggest improvements, or contribute to the project.
+### 4. Unit Price Distribution
+![Unit Price Distribution](Plots/download%20(48).png)
 
-## License
+Histogram of product unit prices. Right-skewed distribution—most products are moderately priced, with a few high-cost items (e.g., specialty drugs).
 
-This project is licensed under the MIT License.
+---
+
+### 5. Distribution of Sold Quantities
+![Quantity Distribution](Plots/download%20(47).png)
+
+Most sales are in low quantities, consistent with pharmacy ordering behavior—frequent and in small batches.
+
+---
+
+### 6. Overall Sales Trend
+![Overall Sales](Plots/download%20(46).png)
+
+Line plot of total daily sales across the simulation. Seasonal spikes reflect demand cycles.
+
+---
+
+### 7. Top 10 Bestselling Products
+![Top 10 Products](Plots/download%20(45).png)
+
+Bar chart showing top 10 products by unit sales. These products are critical to inventory planning.
+
+---
+
+### 8. Waste and Stockouts Analysis
+![Waste and Stockouts](Plots/download%20(44).png)
+
+Dual subplot:
+- **Top:** Waste due to expiration. Certain slow-moving products are consistently wasted.
+- **Bottom:** Frequency of stockouts by product. Highlights under-forecasted items.
+
+---
+
+## 📌 Key Takeaways
+- **Seasonality** drives significant sales variation.
+- **Inventory waste** is concentrated in specific SKUs—suggests overstocking.
+- **Supplier delays** vary widely—room for performance-based contracting.
+- **Top-selling products** account for the majority of demand—prioritize them.
+
+---
+
+##  Next Steps (Future Work)
+- Simulate disruptions (e.g., supplier failure) to test network resilience
+- Model safety stock levels using statistical methods
+- Build predictive models for sales forecasting
+- Optimize reorder points and economic order quantity (EOQ)
+
+---
+
+## 📂 Repository Structure
+```
+├── data/               # Synthetic CSV files
+├── notebooks/          # Jupyter/Colab Notebooks
+├── Plots/              # Output plots used in EDA
+├── README.md           # Project overview and insights
+```
+
+---
+
+##  Goal
+This project demonstrates how simulation and analytics can be applied to a synthetic supply chain for actionable insights. With enhanced forecasting and data-driven procurement, such a system can reduce waste, improve service levels, and streamline operations.
