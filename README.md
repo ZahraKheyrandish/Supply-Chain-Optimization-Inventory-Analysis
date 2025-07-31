@@ -99,15 +99,5 @@ Dual subplot:
 
 ---
 
-## 📂 Repository Structure
-```
-├── data/               # Synthetic CSV files
-├── notebooks/          # Jupyter/Colab Notebooks
-├── Plots/              # Output plots used in EDA
-├── README.md           # Project overview and insights
-```
-
----
-
 ##  Goal
 This project demonstrates how simulation and analytics can be applied to a synthetic supply chain for actionable insights. With enhanced forecasting and data-driven procurement, such a system can reduce waste, improve service levels, and streamline operations.
