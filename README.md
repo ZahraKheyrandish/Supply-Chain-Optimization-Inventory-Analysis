@@ -22,7 +22,17 @@ A synthetic dataset was created to mimic a realistic supply chain environment wi
 - **Google Colab** as the development environment
 
 ---
+teractive Dashboard
+To provide a dynamic and user-friendly interface for exploring the project's findings, an interactive dashboard was built using Streamlit. You can access the live dashboard here: [Launch Dashboard.](https://supply-chain-optimization-inventory-analysis-jpfxbgrucyvvvjftv.streamlit.app/#total-cost-by-supplier)
 
+
+Filter data by region and total cost to focus on specific segments of the supply chain.
+
+View key performance indicators (KPIs) and visualizations, including total cost by supplier, quantity shipped by category, and monthly sales trends.
+
+Interact with a Lead Time Prediction Model to forecast delivery times for new orders
+
+---
 ##  Exploratory Data Analysis (EDA)
 
 ### 1. Monthly Sales Trend
